@@ -176,6 +176,16 @@ angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmotico
           }
         }
       })
+      .state('app.user.edit',{
+        url: '/edit',
+        views:{
+          'container@': {
+            templateUrl:'views/user/profile.html',
+            controller: 'UserPageCtrl',
+            controllerAs: 'ctrl'
+          }
+        }
+      })
       .state('app.category',{
         url: '/category/:id',
         views:{

@@ -203,7 +203,7 @@
                   <img ng-if="!account.image" src="img/post-test-4.jpg" alt="Profile image" class="img-responsive"/>
                   <img ng-if="account.image" ng-src="{{account.image}}" alt="Profile image" class="img-responsive"/>
                 </div>
-                <a ui-sref="root.edit-profile()" class="edit-img"><i class="fa fa-pencil"></i></a>
+                <a ui-sref="app.user.edit" class="edit-img"><i class="fa fa-pencil"></i></a>
               </div>
               <div class="info">
                 <h5>{{account.username}}</h5><span>Godine: {{account.age}}</span>
