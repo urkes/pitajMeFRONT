@@ -1,0 +1,222 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <!--QUESTION IMAGE-->
+      <div class="row">
+        <div ng-if="!question.image" class="col-md-12 post-img"><a href=""><img src="assets/images/big-post-img.jpg" alt="Category image" class="img-responsive"/></a></div>
+        <div ng-if="question.image" class="col-md-12 post-img"><a href=""><img ng-src="{{question.image}}" alt="Category image" class="img-responsive"/></a></div>
+      </div>
+      <!--QUESTION CONTENT-->
+      <div class="post-detail-content {{question.opinionFrom}}-post">
+        <!--USER DETAILS-->
+        <div class="row">
+          <div class="col-md-12 post-user">
+            <div class="username-wrap">
+              <a ui-sref="app.user({id: question.userId})" class="user-thumb">
+                <img ng-if="!question.user.image || question.isAnonymous" src="assets/images/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
+                <img ng-if="question.user.image && !question.isAnonymous" ng-src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
+              </a>
+              <a ng-if="question.isAnonymous" href="">Anonymous</a>
+              <a ng-if="!question.isAnonymous" ui-sref="app.user({id: question.userId})" >{{question.user.username}}</a>
+            </div>
+            <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
+          </div>
+        </div>
+        <!--END USER DETAILS-->
+
+        <!--LIKES AND DISLIKES COUNT-->
+        <div class="row">
+          <div class="col-md-12 post-title">
+            <h1>{{question.title}}</h1>
+            <h2><a ui-sref="app.category({id: question.category.id})" >{{question.category.name}}</a></h2>
+            <div class="stats">
+              <div class="girls"><i class="fa fa-female"> </i>{{question.femaleAnswers}}</div>
+              <div class="boys"><i class="fa fa-male"></i>{{question.maleAnswers}}</div>
+              <div class="likes"><i class="fa fa-thumbs-up"></i>{{question.likes}}</div>
+              <div class="dislikes"><i class="fa fa-thumbs-down"></i>{{question.dislikes}}</div>
+            </div>
+          </div>
+        </div>
+        <!--LIKES AND DISLIKES COUNT END-->
+        <!--QUESTION CONTENT-->
+        <div class="row">
+          <div ng-bind-html="question.text | emoticons" class="col-md-12 post-description">
+            {{question.text}}
+          </div>
+          <!--<div ng-show="editing" class="col-md-12">-->
+            <!--<textarea  placeholder="Upiši komentar ovde" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>-->
+          <!--</div>-->
+          <!--<div class="col-md-12 question-attachment" ng-if="question.image">
+            <img src="{{question.image}}" alt="Attachment"/>
+          </div>-->
+        </div>
+        <!--CONTENT END-->
+        <div class="social-networks clearfix">
+          <!--CONTENT MANAGE-->
+          <div class="left">
+            <a href="" ng-if="!question.isLiked" ng-click="likeDislikeQuestion(1);" class="btn-red">
+              <i class="fa fa-thumbs-o-up"></i>Like</a>
+            <a href="" ng-if="question.isLiked" ng-click="unlikeUndislikeQuestion();" class="btn-red">
+              <i class="fa fa-thumbs-o-up"></i>Unlike</a>
+            <a href="" ng-if="!question.isDisliked" ng-click="likeDislikeQuestion(-1);" class="btn-dark">
+              <i class="fa fa-thumbs-o-down"></i>Dislike</a>
+            <a href="" ng-if="question.isDisliked" ng-click="unlikeUndislikeQuestion();" class="btn-dark">
+              <i class="fa fa-thumbs-o-down"></i>Undislike</a>
+            <!--<button class="btn btn-default btn-sm" ng-show="question.owner" ng-click="deleteQuestion()"><i class="fa fa-trash-o"></i> delete</button>-->
+            <!--<button class="btn btn-default btn-sm" ng-show="!editing && question.owner" ng-click="editing=true"><i class="fa fa-pencil-square-o"></i> edit</button>-->
+            <!--<button class="btn btn-default btn-sm" ng-show="editing && question.owner" ng-click="updateQuestion(question)"><i class="fa fa-floppy-o"></i> save</button>-->
+          </div>
+          <!--CONTENT MANAGE END-->
+          <!--SOCIAL-->
+          <!--<div class="right">
+            <h5>Podeli na:</h5>
+            <ul class="clearfix">
+              <li><a href="" ng-click="share(question)"><i class="fa fa-facebook-square"></i></a></li>
+              <li><a href=""><i class="fa fa-twitter-square"></i></a></li>
+              <li><a href=""><i class="fa fa-google-plus-square"></i></a></li>
+              <div class="fb-share-button" data-href='"+window.location.href+"' data-layout="button_count"></div>
+
+              <li><a href=""><i class="fa fa-youtube-square"></i></a></li>
+              <li><a href=""><i class="fa fa-behance-square"></i></a></li>
+              <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
+              <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
+
+            </ul>
+          </div>-->
+          <!--SOCIAL END-->
+        </div>
+      </div>
+      <!--POST ANSWER-->
+      <div class="content" ng-if="isLogged">
+        <div class="row">
+          <div class="col-md-12">
+            <form role="form" class="form-signin" ng-submit="sendAnswer(answer)">
+              <h1 class="form-signin-heading">Ostavi odgovor</h1>
+              <div class="form-group">
+                <label for="topic-content">Odgovor</label>
+                <textarea id="topic-content" placeholder="Upiši odgovor ovde" rows="3" required="required" class="form-control" ng-model="answer.text"></textarea>
+              </div>
+              <hr class="form-devider"/>
+              <label class="checkbox col-md-6">
+                <input ng-model="answer.isAnonymous" type="checkbox"/> Odgovori anonimno
+              </label>
+              <button type="submit" class="btn-dark pull-right">Pošalji odgovor</button>
+            </form>
+            <div class="alert alert-danger" role="alert" ng-show="message" style="text-transform: uppercase;">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Greška:</span>
+              {{message}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--POST ANSWER END-->
+
+      <!-- **** ANSWERS **** -->
+      <div class="content" ng-show="question.answers">
+        <div class="row">
+          <div class="col-md-12">
+            <!--ANSWER ITEM-->
+            <div id="answer-{{answer.id}}" class="comment clearfix" ng-repeat="answer in question.answers">
+              <!--ANSWER USER INFO-->
+              <div class="comment-user">
+                <div class="user-img">
+                  <img ng-if="!answer.user.image" src="assets/images/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                  <img ng-if="answer.user.image" ng-src="{{answer.user.image}}" alt="Profile image" class="img-responsive"/>
+                </div>
+                <div class="info">
+                  <h5><a ui-sref="app.user({id: answer.userId})">{{answer.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                </div>
+              </div>
+              <!--ANSWER USER INFO END-->
+              <div class="comment-content" style="width: 100%;">
+                <div class="description">
+                  <p ng-show="!answer.editing" ng-bind-html="answer.text | emoticons">{{answer.text}}</p>
+                  <!--<textarea ng-show="answer.editing" placeholder="Upiši odgovor ovde" rows="2" required="required" class="form-control" ng-model="answer.text"></textarea>-->
+                  <div class="social-networks clearfix">
+                    <div class="left">
+                      <!--<a href="" ng-if="!answer.liked" ng-click="likeDislikeAnswer(answer, 1);" class="btn-red" >-->
+                        <!--<i class="fa fa-thumbs-o-up"></i>Like</a>-->
+                      <!--<a href="" ng-if="answer.liked" ng-click="unlikeUndislikeAnswer(answer);" class="btn-red" >-->
+                        <!--<i class="fa fa-thumbs-o-up"></i>Unike</a>-->
+                      <button type="button" data-toggle="collapse" data-target="#collapse_{{answer.id}}" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-comment-o"></i> Dodaj komentar
+                      </button>
+                      <!--<button class="btn btn-default btn-sm" ng-if="answer.owner" ng-click="deleteAnswer(answer);"><i class="fa fa-trash-o"></i> delete</button>-->
+                      <!--<button class="btn btn-default btn-sm" ng-if="!answer.editing && answer.owner" ng-click="answer.editing=true"><i class="fa fa-pencil-square-o"></i> Izmeni</button>-->
+                      <!--<button class="btn btn-default btn-sm" ng-if="answer.editing && answer.owner" ng-click="updateAnswer(answer)"><i class="fa fa-floppy-o"></i> Sačuvaj</button>-->
+                    </div>
+                    <!--<div class="right social">
+                      <h5>Podeli na:</h5>
+                      <ul class="clearfix">
+                        <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a href=""><i class="fa fa-twitter-square"></i></a></li>
+                        <li><a href=""><i class="fa fa-google-plus-square"></i></a></li>
+                        <li><a href=""><i class="fa fa-youtube-square"></i></a></li>
+                        <li><a href=""><i class="fa fa-behance-square"></i></a></li>
+                        <li><a href=""><i class="fa fa-envelope-square"></i></a></li>
+                        <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
+                      </ul>
+                    </div>-->
+                  </div>
+
+                  <!-- **** COMMENTS **** -->
+                  <div class="row">
+                    <div class="collapse" id="collapse_{{answer.id}}">
+                      <div class="well">
+                        <div id="comment-{{comment.id}}" class="comment clearfix" ng-repeat="comment in answer.answers">
+                          <div class="comment-user">
+                            <div class="user-img">
+                              <img ng-if="!comment.user.image" src="assets/images/post-test-2.jpg" alt="Profile image" class="img-responsive"/>
+                              <img ng-if="comment.user.image" ng-src="{{comment.user.image}}" alt="Profile image" class="img-responsive"/>
+                            </div>
+                            <div class="info">
+                              <h5><a ui-sref="app.user({id: comment.userId})" >{{comment.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
+                            </div>
+                          </div>
+                          <div class="comment-content" style="width: 100%;">
+                            <div class="description">
+                              <p ng-show="!comment.editing" ng-bind-html="comment.text | emoticons">{{comment.text}}</p>
+                              <!--<textarea ng-show="comment.editing" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>-->
+                              <!--<div class="social-networks clearfix">-->
+                                <!--<div class="left">-->
+                                  <!--<button class="btn btn-default btn-sm" ng-if="comment.owner" ng-click="deleteComment(comment, answer);"><i class="fa fa-trash-o"></i> Obriši</button>-->
+                                  <!--<button class="btn btn-default btn-sm" ng-if="!comment.editing && comment.owner" ng-click="comment.editing=true"><i class="fa fa-pencil-square-o"></i> Izmeni</button>-->
+                                  <!--<button class="btn btn-default btn-sm" ng-if="comment.editing && comment.owner" ng-click="updateComment(comment)"><i class="fa fa-floppy-o"></i> Sačuvaj</button>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            </div>
+                          </div>
+                        </div>
+                        <!--POST COMMENT-->
+                        <form action="" ng-if="isLogged" ng-submit="sendComment(answer, comment)">
+                          <div class="row">
+                            <div class="form-group col-md-12">
+                              <label for="answer-content">Komentar</label>
+                              <textarea id="answer-content" placeholder="Upiši komentar" rows="2" required="required" class="form-control" ng-model="comment.text"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-bottom">
+                            <button type="button" class="btn-red" >Pošalji komentar</button>
+                          </div>
+                        </form>
+                        <!--END POST COMMENT-->
+                      </div>
+                    </div>
+                  </div>
+                  <!--END COMMENTS-->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--END ANSWERS-->
+    </div>
+
+    <!--SIDEBAR-->
+    <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
+    <!--END SIDEBAR-->
+  </div>
+</div>

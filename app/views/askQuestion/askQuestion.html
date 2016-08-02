@@ -1,0 +1,60 @@
+  <section class="container">
+    <div class="row">
+      <form role="form" class="form-signin" ng-submit="sendQuestion(question)">
+        <div class="col-md-9">
+          <div class="content">
+            <div class="row">
+              <div class="col-md-8">
+                <h1>Postavi pitanje</h1>
+                <div class="form-group">
+                  <label for="title">Naslov pitanja</label>
+                  <input id="title" type="text" placeholder="Naslov pitanja" required="required" class="form-control" ng-model="question.title"/>
+                </div>
+                <div class="form-group">
+                  <label for="text">Tekst pitanja</label>
+                  <textarea id="text" placeholder="Napišite pitanje" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 container">
+                <div class="form-group row">
+                  <label for="category_box" class="col-md-12">Kategorija</label>
+                  <div id="category_box" class="col-md-4">
+                    <select class="form-control" name="category" id="category" ng-model="question.category" ng-options="category.name for category in categories">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>Tražim mišljenje od:</label>
+                <label class="radio-inline"><input type="radio" name="opinionFrom" value="1" ng-model="question.opinionFrom" required="required">Muških</label>
+                <label class="radio-inline"><input type="radio" name="opinionFrom" value="2" ng-model="question.opinionFrom" required="required">Ženskih</label>
+                <label class="radio-inline"><input type="radio" name="opinionFrom" value="3" ng-model="question.opinionFrom" required="required">Svih</label>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="form-bottom">
+                    <label class="checkbox">
+                      <input ng-model="question.isAnonymous" type="checkbox"/> Postavi pitanje anonimno
+                    </label>
+                    <button type="submit" class="btn-red">Postavi pitanje</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="message">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Greška:</span>
+                {{message}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
+
+    </div>
+  </section>
+
+

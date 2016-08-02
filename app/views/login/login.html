@@ -1,0 +1,47 @@
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <form role="form" class="form-signin" ng-submit="login()">
+              <h1>Prijavljivanje</h1>
+              <div class="form-group">
+                <label for="username">Korisničko ime</label>
+                <input id="username" type="text" placeholder="Korisničko ime" required="" class="form-control" ng-model="username"/>
+              </div>
+              <div class="form-group">
+                <label for="password">Šifra</label>
+                <input id="password" type="password" placeholder="Šifra" required="required" class="form-control" ng-model="password"/>
+              </div>
+              <a ui-sref="app.forgotPassword">Zaboravljena šifra?</a>
+              <hr class="form-devider"/>
+              <div class="form-bottom">
+                <label class="checkbox">
+                  <input type="checkbox" value="remember-me" checked="checked" ng-model="rememberMe"/> Upamti me
+                </label>
+                <button type="submit" value="Prijavi se" class="btn btn-green">Prijavi se</button>
+              </div>
+            </form>
+
+            <br/>
+            <div class="alert alert-danger" role="alert" ng-show="message" style="text-transform: uppercase;">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Greška:</span>
+              {{message}}
+            </div>
+            <div class="alert alert-danger" role="alert" ng-show="loginError" style="text-transform: uppercase;">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Greška:</span>
+              {{loginError}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
+
+  </div>
+</section>

@@ -1,0 +1,49 @@
+<div id="content-wrap">
+<section class="container">
+  <div class="row">
+    <div class="main-content col-md-9">
+      <div class="category-header clearfix">
+        <div class="top">
+          <h3 class="pull-left">{{category.name}}</h3>
+          <a class="pull-right btn-red" ng-if="!interest" ng-click="likeCategory();">Prati</a>
+          <a class="pull-right btn-blue" ng-if="interest" ng-click="dislikeCategory();">Prekini praćenje</a>
+        </div>
+        <p>{{category.about}}</p>
+      </div>
+      <div class="grid posts">
+        <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions" on-last-repeat>
+          <article>
+            <a ui-sref="root.question({id: question.id})">
+              <img src="assets/images/post-test-6.jpg" alt="Alt tekst za sliku" class="img-responsive"/>
+            </a>
+            <div class="post-content clearfix {{question.opinionFrom}}-post">
+              <h1>
+                <a ng-if="question.type == 'question'" ui-sref="app.user({id: question.userId})">{{question.user.username}}</a>
+                <a ng-if="question.type == 'article'" ui-sref=".">članak</a>
+                <span>{{question.timestamp}}</span>
+              </h1>
+              <h2>
+                <a ng-if="question.type == 'question'" ui-sref="app.question({ id : question.id})">{{question.title}}</a>
+                <a ng-if="question.type == 'article'" ui-sref="app.article({ id : question.id})">{{question.title}}</a>
+              </h2>
+              <h3><a ui-sref="app.category({id: question.category.id})">{{question.category.name}}</a></h3>
+              <div class="question-text" ng-bind-html="question.text | emoticons"><p class="question-text">{{question.text}}</p></div>
+              <div class="stats">
+                <div class="girls"><i class="fa fa-female"> </i>{{question.femaleAnswers}}</div>
+                <div class="boys"><i class="fa fa-male"></i>{{question.maleAnswers}}</div>
+                <div class="girls"><i class="fa fa-thumbs-o-up"></i>{{question.likes}}</div>
+                <div class="girls"><i class="fa fa-thumbs-o-down"></i>{{question.dislikes}}</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
+
+  </div>
+</section>
+
+
+</div>

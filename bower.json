@@ -1,0 +1,23 @@
+{
+  "name": "PitajMe.rs",
+  "description": "PitajMe.rs app",
+  "version": "1.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.7",
+    "angular-animate": "1.5.7",
+    "angular-cookies": "1.5.7",
+    "angular-resource": "1.5.7",
+    "angular-sanitize": "1.5.7",
+    "angular-local-storage": "0.2.7",
+    "angular-ui-router": "0.3.1",
+    "ng-emoticons": "^2.0.1",
+    "bootstrap": "^3.3.7",
+    "angular-socialshare": "^1.4.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.5.7"
+  }
+}

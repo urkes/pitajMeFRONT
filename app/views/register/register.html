@@ -1,0 +1,126 @@
+<section class="container">
+  <div class="row">
+    <form role="form" class="form-signin" ng-submit="createAccount(acc)">
+      <div class="col-md-9">
+        <div class="content">
+          <div class="row">
+            <div class="col-md-8">
+
+              <h1>Registracija</h1>
+              <div class="form-group">
+                <label for="email">Email adresa</label>
+                <input id="email" type="email" placeholder="Email adresa" required="" class="form-control" ng-model="acc.email"/>
+              </div>
+              <div class="form-group">
+                <label for="password">Šifra</label>
+                <input id="password" type="password" placeholder="Šifra" required="required" class="form-control" ng-model="acc.password"/>
+              </div>
+
+            </div>
+            <div class="col-md-12 container">
+              <hr class="form-devider"/>
+              <div class="form-group">
+                <label for="uname">Korisničko ime</label>
+                <input id="uname" type="text" placeholder="Korisničko ime" required="required" class="form-control" ng-model="acc.username"/>
+              </div>
+              <div class="form-group row">
+                <label for="country_box" class="col-md-12">Zemlja</label>
+                <div id="country_box" class="col-md-4">
+                  <select class="form-control" name="country" id="country" ng-model="acc.country" ng-options="country.name for country in countries">
+                    <option value="">Odaberite zemlju</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <hr class="form-devider"/>
+              <div class="form-group">
+                <div class="row">
+                  <label for="day" class="col-md-12">Datum rođenja:</label>
+                  <div class="col-md-4">
+                    <select id="day" class="form-control" ng-model="acc.day" ng-options="day.name for day in days">
+                      <option value="">Dan</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <select id="month" class="form-control" ng-model="acc.month" ng-options="month.name for month in months">
+                      <option value="">Mesec</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <select id="year" class="form-control" ng-model="acc.year" ng-options="year.name for year in years">
+                      <option value="">Godina</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="gender">Pol</label>
+                <div id="gender" class="radio" ng-model="acc.sex">
+                  <label class="radio-inline" ng-repeat="s in sex">
+                    <input type="radio" name="gender" value="{{s.name}}" ng-model="acc.sex"/>{{s.name}}
+                  </label>
+                </div>
+                <hr class="form-devider"/>
+                <div class="form-bottom">
+                  <label class="checkbox">
+                    <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
+                  </label>
+                  <a type="submit"  class="btn-red">
+                    <div ng-show="loading" class="sp sp-circle" ></div>
+                    <span ng-show="!loading">Registruj se</span>
+                  </a>
+                </div>
+                <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="error">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Greška:</span>
+                  {{errorMessage}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
+
+  </div>
+</section>
+
+<style>
+
+
+  .sp {
+    margin-top: 0.75em;
+    width: 2em;
+    height: 2em;
+  }
+
+  /* Spinner Circle Rotation */
+  .sp-circle {
+    border: 4px rgba(255, 255, 255, 0.5) solid;
+    border-top: 4px rgba(255, 255, 255, 1) solid;
+    border-radius: 50%;
+    -webkit-animation: spCircRot .6s infinite linear;
+    animation: spCircRot .6s infinite linear;
+  }
+
+  @-webkit-keyframes spCircRot {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+  @keyframes spCircRot {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+</style>

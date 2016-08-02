@@ -1,0 +1,20 @@
+<article>
+  <h4> <a href="#">Kategorije</a></h4>
+  <ul>
+    <li ng-repeat="category in categories"><a ui-sref="app.category({id: category.id})">{{category.name}} ({{category.questionsInCategory}})</a></li>
+  </ul>
+</article>
+<article class="most-loved">
+  <h4 style="color: #fff;">Najviše lajkovana pitanja</h4>
+  <ul>
+    <li ng-repeat="q in mostLiked">
+      <a ui-sref="app.question({id: q.id})">{{q.title}} ({{q.numberofanswers}})</a>
+    </li>
+  </ul>
+</article>
+<!--<article>-->
+  <!--<h4 style="color:white">Popularna pitanja</h4>-->
+  <!--<ul>-->
+    <!--<li ng-repeat="top in topQuestions"><a ui-sref="root.question({id: top.id})">{{top.title}}</a></li>-->
+  <!--</ul>-->
+<!--</article>-->

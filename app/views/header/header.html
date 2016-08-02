@@ -1,0 +1,114 @@
+<header>
+  <div class="row">
+    <div class="container">
+      <div id="main-nav" role="navigation" class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a ui-sref="app.home" class="navbar-brand"><img src="assets/images/logo.png" alt="Logo" class="img-responsive"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li ui-sref-active="active"><a ui-sref="app.home">Početna</a></li>
+            <li ui-sref-active="active"><a ui-sref="app.askQuestion">Postavi pitanje</a></li>
+            <li ng-if="isAuth()" ui-sref-active="active"><a ui-sref="app.user({id: getCurrentUser().id})">Profil</a></li>
+            <li ui-sref-active="active"><a ui-sref="app.articles">Svaštara</a></li>
+            <li class="dropdown">
+              <a href="" data-toggle="dropdown" class="dropdown-toggle">PitajMe <span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li ng-show="!isAuth()"><a ui-sref="app.login">Uloguj se</a></li>
+                <li ng-show="isAuth()"><a ui-sref="app.logout">Odjavi se</a></li>
+                <li ng-show="!isAuth()"><a ui-sref="app.register">Registracija</a></li>
+                <li><a ui-sref="app.contact">Kontakt</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Još opcija</li>
+                <li><a ui-sref="app.forgotPassword">Zaboravljena šifra?</a></li>
+                <li ng-show="isAdmin()"><a href="" ng-click="goToAdmin()">Admin panel</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="container askQuestion" data-ng-show="$state.includes('root.home') || $state.includes('root.articles')" style="padding: 0;">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-8 col-md-push-2">-->
+        <!--<div class="row" >-->
+          <!--<div class="col-md-12">-->
+            <!--<div class="quick-post">-->
+              <!--<form role="form" class="form-signin">-->
+                <!--<div class="row">-->
+                  <!--<div class="form-group col-md-8">-->
+                    <!--<label for="title">Naslov pitanja</label>-->
+                    <!--<input id ="title" type="text" placeholder="Unesi naslov" required="required" class="form-control" ng-model="question.title"/>-->
+                  <!--</div>-->
+                  <!--<div class="form-group col-md-4">-->
+                    <!--<label for="category">Izaberi kategoriju:</label>-->
+                    <!--<select class="form-control" name="category" id="category" required="required" ng-model="question.category" ng-options="category.name for category in categories">-->
+                    <!--</select>-->
+                  <!--</div>-->
+                  <!--<div class="form-group col-md-12">-->
+                    <!--<label for="topic-content">Tekst pitanja</label>-->
+                    <!--<textarea id="topic-content" placeholder="Unesi pitanje" rows="2" required="required" class="form-control" ng-model="question.text"></textarea>-->
+                  <!--</div>-->
+                  <!--<div class="form-group col-md-12 input-group" style="padding: 0 15px;">-->
+                    <!--<span class="input-group-addon" id="attachment"><i class="fa fa-paperclip"></i></span>-->
+                    <!--<input id="image-url" placeholder="URL slike" type="text" class="form-control" ng-model="question.image" aria-describedby="attachment"-->
+                           <!--data-toggle="popover" data-placement="bottom" data-content="Image URL is invalid. Check your URL and try again."/>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div>-->
+                  <!--<label class="opinion"><input type="radio" name="opinionFrom" value="1" ng-model="question.opinionFrom"/> Za momke</label>-->
+                  <!--<label class="opinion"><input type="radio" name="opinionFrom" value="2" ng-model="question.opinionFrom"/> Za devojke</label>-->
+                  <!--<label class="opinion"><input type="radio" name="opinionFrom" value="3" ng-model="question.opinionFrom"/> Svejedno</label>-->
+                <!--</div>-->
+                <!--<div class="form-bottom">-->
+                  <!--<label class="checkbox">-->
+                    <!--<input ng-model="question.isAnonymous" type="checkbox"/> Postavi pitanje kao anonimus-->
+                  <!--</label>-->
+                  <!--<button type="submit" class="btn-red" ng-click="sendQuestion(question)">Pošalji</button>-->
+                <!--</div>-->
+              <!--</form>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</header>
+
+
+
+<!-- Modal Login -->
+<!--<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginFormLabel">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<h4 class="modal-title" id="passFormLabel">Postavljanje pitanja</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body">-->
+        <!--<p>Da bi ste postavili pitanje potrebno je da se prijavite</p>-->
+        <!--<div>-->
+          <!--<label for="username">Korisničko ime:</label>-->
+          <!--<input type="text" ng-model="newUser.username" id="username" class="form-control">-->
+        <!--</div>-->
+        <!--<div>-->
+          <!--<label for="password">Lozinka:</label>-->
+          <!--<input type="password" ng-model="newUser.password" id="password" class="form-control">-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="modal-footer">-->
+          <!--<button type="button" class="btn-default" data-dismiss="modal" >Zatvori</button>-->
+          <!--<button type="button" class="btn-default" data-dismiss="modal" ui-sref="root.registration()">Registruj se</button>-->
+          <!--<button type="button" class="btn-primary" ng-click="loginAndSendQuestion(newUser);" ng-show="!loging">Prijavi se i pošalji pitanje</button>-->
+          <!--<div ng-show="loging" class="sp sp-circle" ></div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

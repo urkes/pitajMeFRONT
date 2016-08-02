@@ -1,0 +1,102 @@
+<!--<h1>Ovo je home stranica</h1>-->
+<!--<h2 ng-repeat="post in posts">{{post.title}}</h2>-->
+<div id="content-wrap">
+  <section class="container">
+    <div class="row">
+      <div class="main-content col-md-9">
+        <div class="grid posts">
+
+          <div ng-if="operationProgress.getPosts" style="text-align: center;">
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <div ng-if="fetchError" style="text-align: center;">
+            {{fetchError}}
+          </div>
+
+          <div ng-if="articles">
+            <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles | limitTo:3">
+              <article>
+                <a ui-sref="app.article({id : article.id})" >
+                  <img ng-if="!article.image" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                  <img ng-if="article.image" ng-src="{{article.image}}" alt="{{article.title}}" class="img-responsive" style="height: 180px;"/>
+                </a>
+                <div class="post-content clearfix {{article.user.sex}}-post" style="height: 180px !important;">
+                  <h1>
+                    <span>{{article.timestamp}}</span>
+                  </h1>
+                  <h2><a ui-sref="app.article({id : article.id})">{{article.title}}&nbsp; <i class="fa fa-picture-o" ng-show="article.image"></i></a></h2>
+                  <h3><a ui-sref="app.category({id : article.category.id})">{{article.category.name}}</a></h3>
+                  <div ng-bind-html="article.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{article.text}}</p></div>
+                </div>
+              </article>
+            </div>
+            <span class="pull-right"><a ui-sref="app.articles">Pročitaj još članaka &gt;</a></span>
+            <hr class="form-devider"/>
+          </div>
+
+          <!--<div ng-if="sponsoredPosts">-->
+            <!--<div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in sponsoredPosts" on-last-repeat>-->
+              <!--<article>-->
+                <!--<a ui-sref="root.question({id: question.id})">-->
+                  <!--<img ng-if="!question.image || !checkImageUrl(question.image)" src="img/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>-->
+                  <!--<img ng-if="question.image && checkImageUrl(question.image)" ng-src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>-->
+                <!--</a>-->
+                <!--<div class="post-content clearfix {{question.gender}}-post" style="height: 180px !important;">-->
+                  <!--<h1>-->
+                    <!--<a ng-show="!question.isAnonymous" ui-sref="root.user({id: question.accountId})">{{question.account.username}}</a>-->
+                    <!--<a ng-show="question.isAnonymous" href="">Anonymous</a>-->
+                    <!--<span>{{question.time}}</span>-->
+                  <!--</h1>-->
+                  <!--<h2><a ui-sref="root.question({id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>-->
+                  <!--<h3><a ui-sref="root.category({id: question.category.id})">{{question.category.name}}</a></h3>-->
+                  <!--<div  ng-bind-html="question.text | emoticons:{linkTarget:'_blank'}"><p class="question-text">{{question.text}}</p></div>-->
+                <!--</div>-->
+              <!--</article>-->
+            <!--</div>-->
+            <!--<hr class="form-devider"/>-->
+          <!--</div>-->
+
+          <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions track by $index" on-last-repeat>
+            <article>
+              <a ui-sref="app.question({id: question.id})">
+                <img ng-if="!question.image || !checkImageUrl(question.image)" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                <img ng-if="question.image && checkImageUrl(question.image)" ng-src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+              </a>
+              <div class="post-content clearfix {{question.opinionFrom}}-post">
+                <h1>
+                  <a ng-show="!question.isAnonymous" ui-sref="app.user({ id: question.user.id })" >{{question.user.username}}</a>
+                  <a ng-show="question.isAnonymous" href="">Anonymous</a>
+                  <span>{{question.timestamp}}</span>
+                </h1>
+                <h2><a ui-sref="app.question({ id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
+                <h3><a ui-sref="app.category({ id: question.category.id})">{{question.category.name}}</a></h3>
+                <div class="question-text" ng-bind-html="question.text | emoticons:{linkTarget:'_blank'}">
+                  <p class="question-text"
+                     read-more
+                     content="{{question.text}}"
+                     words
+                     more-text="Pročitaj još..."
+                     less-text="Manje^"
+                     limit="4"></p>
+                </div>
+                <div class="stats">
+                  <div class="girls"><i class="fa fa-female"> </i>{{question.femaleAnswers}}</div>
+                  <div class="boys"><i class="fa fa-male"></i>{{question.maleAnswers}}</div>
+                  <div class="girls"><i class="fa fa-thumbs-o-up"></i>{{question.likes}}</div>
+                  <div class="girls"><i class="fa fa-thumbs-o-down"></i>{{question.dislikes}}</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-12 text-center">
+            <a class="text-center" ng-show="hasMoreQuestions" href="" ng-click="loadNextQuestions()">Učitaj još ...</a>
+            <span class="text-center" ng-show="!hasMoreQuestions">Stigli ste do kraja :-(</span>
+          </div>
+        </div>
+      </div>
+      <aside class="main-sidebar col-md-3" ui-view="sidebar"></aside>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,627 @@
+.quick-post
+  // display:flex
+  justify-content: center
+  align-items: center
+  padding:30px 30px
+  color:$white
+  background: linear-gradient(to top, rgba(32, 42, 49, 0.8), rgba(32, 42, 49, 0.6)), url("/img/swirl_pattern.png") top center repeat
+  margin-bottom:30px
+  border-radius: 10px
+  h1
+    color:$white
+
+// Headings
+h1, h2, h3, h4, h5
+  position:relative
+  width:100%
+  margin:0
+  margin-bottom:20px
+  color:$pm-main
+  font-family: 'Fira Sans', sans-serif
+
+h1
+  font-size:36px
+h2
+  font-size:32px
+h3
+  font-size:26px
+h4
+  font-size:22px
+h5
+  font-size:18px
+
+// Navigation
+
+.navbar-default
+  background-color:transparent
+  border:none
+  .navbar-nav
+    li
+      a
+        color:$white !important
+        opacity:0.7
+        padding:15px
+        background:transparent !important
+        &:hover
+          opacity:1
+          background:transparent !important
+      &.active, &.open, &:focus, &:hover
+        a
+          opacity:1
+          color:$white
+          // border:1px solid $white
+          border-radius:10px
+          background:transparent
+      &.active
+        border-bottom:2px solid $white
+      ul.dropdown-menu
+        li
+          a
+            color:$pm-main !important
+            padding:5px 15px
+            &:hover
+              opacity:0.7
+              text-decoration:underline
+
+.navbar-brand
+  padding:0
+  width:120px
+.navbar
+  height:auto
+  margin-bottom:0
+
+//Posts
+/* clear fix */
+.grid:after
+  content: ''
+  display: block
+  clear: both
+
+.grid-sizer, .grid-item
+  width: 31%
+  box-sizing: border-box
+
+/* 2 columns wide */
+.grid-item--width2
+  width: 100%
+  padding-right:30px
+
+.post-detail-content, .content
+  background-color:$white
+  padding:30px
+  border-bottom-left-radius: 10px
+  border-bottom-right-radius: 10px
+  margin-bottom:30px
+  &.boy-post
+    border-top:4px solid $pm-boys
+  &.girl-post
+    border-top:4px solid $pm-girls
+.content
+  border-radius:10px
+
+.post-detail-content .social-networks
+  margin-top:10px
+
+//Styles content
+.main-content
+  margin-bottom:30px
+header
+  height:auto
+  background:$pm-main
+  margin-bottom:30px
+  padding-top:30px
+  padding-bottom:30px
+.post-img
+  margin-bottom:0px
+  img
+    width:100%
+    overflow:hidden
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
+.post-user
+  margin-bottom:20px
+  display:flex
+  align-items:center
+  justify-content: space-between
+  .username-wrap
+    display:flex
+    align-items:center
+    .user-thumb
+      height:30px
+      width:30px
+      display:flex
+      justify-content:center
+      align-items:center
+      overflow:hidden
+      border-radius:50%
+      float:left
+      margin-right:10px
+      img
+        height:100%
+  a
+    font-size:16px
+    font-weight:500
+    margin:0
+    font-family: 'Fira Sans', sans-serif
+  span
+    float:right
+    right:0
+
+.post-title
+  width:100%
+  margin-bottom:30px
+  h1
+    font-size:30px
+    font-weight: 800
+    margin: 0
+    float: left
+    margin-bottom:15px
+    line-height:1.2
+  h2 a
+    font-size:14px
+    font-weight: 800
+    margin: 0
+    margin-bottom:20px
+
+  .stats
+    float:left
+    font-size:12px
+    display:flex
+    justify-content:center
+    align-items:center
+    font-weight:700
+    font-family: 'Fira Sans', sans-serif
+    .girls, .boys, .likes, .dislikes
+      float:left
+      margin-right:10px
+    .girls
+      i
+        color:$pm-girls
+    .boys
+      i
+        color:$pm-boys
+    .likes
+      i
+        color:$yellow
+    .dislikes
+      i
+        color:$pm-main
+    i
+      margin-right:5px
+      position:relative
+.post-description
+.comments
+
+//Content wrap
+#content-wrap
+  header
+    background: linear-gradient(to bottom, rgba(32, 42, 49, 1), rgba(32, 42, 49, 0.6)), url("/img/header-bg-1.jpg") bottom center no-repeat
+    background-size:cover
+    height:400px
+  .posts
+    article
+      background-color:$white
+      border-radius:10px
+      overflow:hidden
+      margin-bottom:30px
+
+      .post-content
+        padding:20px
+        &.boy-post
+          border-top:4px solid $pm-boys
+        &.girl-post
+          border-top:4px solid $pm-girls
+
+      h1, h1 a
+        font-size:12px
+        font-weight:500
+        margin:0
+        font-family: 'Fira Sans', sans-serif
+        span
+          display:inline-flex
+          float:right
+      h1
+        margin-bottom:10px
+      h2, h2 a
+        font-size:18px
+        line-height:1.4
+        font-weight:500
+        margin:0
+        color:$pm-main
+        display:block
+      h2
+        margin-bottom:0px
+      h3, h3 a
+        font-size:12px
+        line-height:1.4
+        font-weight:500
+        margin:0
+        margin-bottom:10px
+        color:$gray
+        display:block
+      p
+        margin-bottom:10px
+      .stats
+        float:right
+        font-size:12px
+        display:flex
+        justify-content:center
+        align-items:center
+        font-weight:700
+        font-family: 'Fira Sans', sans-serif
+        i
+          margin-right:5px
+          position:relative
+        .girls, .boys, .likes, .dislikes
+          float:left
+          margin-left:10px
+        .girls
+          i
+            color:$pm-girls
+        .boys
+          i
+            color:$pm-boys
+        .likes
+          i
+            color:$yellow
+        .dislikes
+          i
+            color:$pm-main
+
+// Sidebar
+.main-sidebar
+  article
+    background-color:$pm-main
+    padding:30px
+    margin-bottom:30px
+    border-radius:10px
+    background: linear-gradient(to top, rgba(32, 42, 49, 1), rgba(32, 42, 49, 0.8)), url(../../img/post-test-4.jpg) top center no-repeat
+    background-size: cover
+    &.most-loved
+      background-color:$pm-girls
+      background: linear-gradient(to top, rgba(229, 115, 104, 1), rgba(229, 115, 104, 0.8)),url(../../img/post-test-1.jpg)
+    h4
+      a
+        color:$white
+    ul
+      li
+        margin-bottom:15px
+        &:last-child
+          margin-bottom:0
+        a
+          color: $white
+          margin-bottom:0px
+          opacity: 0.8
+          display:block
+          &:hover
+            color:$white
+            opacity: 1
+
+//Category page
+.category-header
+  padding:30px 30px
+  color:$white
+  background: linear-gradient(to top, rgba(32, 42, 49, 0.8), rgba(32, 42, 49, 0.6)), url("/img/swirl_pattern.png") top center repeat
+  margin-bottom:30px
+  border-radius: 10px
+  .top
+    display: block
+    float: left
+    width:100%
+    h3
+      display: inline-block
+      width:auto
+      color:$white
+  p
+
+
+//Profile sidebar
+.profile-sidebar
+  display:flex
+  flex-direction:column
+  .top
+    margin:0 auto
+    position:relative
+    margin-bottom:15px
+    .img-holder
+      border-radius:50%
+      overflow:hidden
+      position:relative
+      width:100px
+      height:100px
+      img
+        height:100%
+    a.edit-img
+      padding:5px
+      background-color:$pm-girls
+      border-radius:50%
+      color:$white
+      position:absolute
+      bottom:0
+      right:0
+      font-size:12px
+
+  .info
+    margin-bottom:15px
+    text-align:center
+    h5
+      margin-bottom:5px
+    span
+      font-size:14px
+      font-family: 'Fira Sans', sans-serif
+
+  ul
+    padding-top:15px
+    border-top:1px solid #eee
+    li
+      margin-bottom:10px
+      i
+        margin-right:10px
+      a
+        color:$pm-main
+      &.active
+        a
+          color:$pm-girls
+
+//Profile stats
+.profile-header
+  // display:flex
+  // justify-content:center
+  padding-bottom:15px
+  border-bottom:1px dashed #eee
+  font-family: 'Fira Sans', sans-serif
+  font-weight:700
+  margin-bottom:30px
+  .user-info
+    float:left
+    display:flex
+    align-items: center
+    .top
+      margin:0 auto
+      position:relative
+      float:left
+      margin-right:20px
+      .img-holder
+        border-radius:50%
+        overflow:hidden
+        position:relative
+        width:60px
+        height:60px
+        img
+          height:100%
+      a.edit-img
+        padding:5px
+        background-color:$pm-girls
+        border-radius:50%
+        color:$white
+        position:absolute
+        bottom:0
+        right:0
+        font-size:12px
+    .info
+      text-align:left
+      float:left
+      h5
+        margin-bottom:0px
+      span
+        font-size:14px
+        font-family: 'Fira Sans', sans-serif
+        font-weight:300
+  ul
+    float:right
+    margin-right:30px
+    li
+      float:left
+      text-align:center
+      margin-right:30px
+      font-size:16px
+      &:last-child
+        margin-right:0
+      i
+        margin-right:5px
+        margin-left: 10px
+        &:first-child
+          margin-left:0
+        &.fa-female
+          color:$pm-girls
+        &.fa-male
+          color:$pm-boys
+      span
+        display:block
+        font-size:10px
+        text-transform:uppercase
+        width:100%
+
+//Comments
+.comment
+  padding-bottom: 15px
+  margin-bottom:30px
+  border-bottom:4px solid $pm-boys
+  .comment-user
+    display: flex
+    align-items: center
+    .user-img
+      width:50px
+      height: 50px
+      border-radius:50%
+      overflow: hidden
+      float:left
+      margin-right:20px
+      img
+        height:100%
+    .info
+      text-align:left
+      h5
+        margin-bottom:0px
+        font-size:14px
+      span
+        font-size:14px
+        font-family: 'Fira Sans', sans-serif
+        font-weight:300
+  .comment-content
+    float:left
+    padding-left:70px
+
+
+//Tabs
+.tabs
+  margin-bottom:15px
+  a
+    color:$pm-main
+.tab-content
+  margin-bottom:30px
+  padding-bottom: 30px
+  border-bottom:1px solid #eee
+
+//Social networks
+.social-networks
+  display: block
+  width:100%
+  text-align:right
+  .left
+    a
+      margin-right:10px
+      float:left
+      i
+        margin-right:5px
+  .right
+    h5
+      margin-bottom:5px
+      font-size:12px
+    ul
+      float:right
+      margin-bottom:0
+      li
+        position:relative
+        float: left
+        margin-right: 10px
+        &:last-child
+          margin-right:0
+        a
+          color:$pm-main
+          font-size: 18px
+          &:hover
+            color:$pm-girls
+
+//Footer
+footer
+  background-color:$pm-main
+  color:$white
+  padding: 50px 0
+  h1
+    font-size:18px
+    font-weight: 700
+    color:$white
+    margin:0
+  hr
+    height:3px
+    width: 30px
+    background-color:$white
+    margin: 10px 0
+  ul
+    list-style: none
+    padding: 0
+    li
+      a
+        color:$white
+        font-size:14px
+
+// Buttons
+.btn-red, .btn-dark, .btn-blue, .btn-border, .btn-green, .btn-yellow, .btn-olive
+  border:none
+  display: inline-block
+  color:$white !important
+  height: 38px
+  padding: 0 30px
+  color: #555
+  text-align: center
+  font-size: 11px
+  font-weight: 600
+  line-height: 38px
+  letter-spacing: .1rem
+  text-transform: uppercase
+  text-decoration: none
+  border-radius: 4px
+  cursor: pointer
+  box-sizing: border-box
+
+  &:hover
+    color:$white
+    opacity:0.8
+
+.btn-red
+  background-color:$pm-girls
+.btn-dark
+  background-color:$pm-main
+.btn-blue
+  background-color:$pm-boys
+.btn-green
+  background-color:$green
+.btn-yellow
+  background-color:$yellow
+.btn-olive
+  background-color:$olive
+.btn-border
+  background-color:transparent
+  border:1px solid $pm-main
+  color:$pm-main !important
+
+// Other
+hr.form-devider
+  margin:20px 0
+  display:inline-block
+  border:none
+  border-top: 2px dashed $pm-main
+  opacity:0.2
+  width:100%
+
+ul
+  list-style: none
+  padding: 0
+  li
+    a
+      color:$white
+      font-size:14px
+
+// Sign in form
+form
+  margin-bottom:0
+  // .input-group:last-child, .form-group:last-child
+  //   margin-bottom:0
+.form-signin
+  h1
+    font-size:24px
+    margin:0
+    margin-bottom:20px
+
+// Form inputs
+.form-control
+  width:100%
+.form-bottom
+    display:flex
+    justify-content: space-between
+    align-items: center
+    .checkbox
+      a
+        margin-left:5px
+.input-group
+  margin-bottom:15px
+.input-group-addon
+  font-weight:normal
+  font-family: 'Fira Sans', sans-serif
+
+textarea
+  min-height:100px
+
+.checkbox label, .radio label
+  padding-left:0
+.checkbox, .radio
+  display:flex
+  font-weight:300
+  align-items:center
+  margin-top:0
+  input
+    position:relative !important
+    margin:0
+    margin-left:0 !important
+    margin-right:10px

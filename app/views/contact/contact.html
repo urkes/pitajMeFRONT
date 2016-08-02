@@ -1,0 +1,40 @@
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="content">
+        <h1>Kontakt</h1>
+        <p>
+          Želite da date savet/sugestiju u vezi izgleda ili funkcionisanja portala? Ili možda da se reklamirate?
+        </p>
+        <p>
+          Popunite formular, pokušaćemo da vam odgovorimo u najkraćem mogućem roku!
+        </p>
+
+        <form ng-submit="sendContactMail(name,contactText,email)">
+          <label for="name">Ime:</label><input type="text" id="name" ng-model="contactMail.name" class="form-control"/>
+          <br/>
+          <label for="subject">Naslov:</label><input type="text" id="subject" ng-model="contactMail.subject" class="form-control"/>
+          <br/>
+          <label for="contactText">Tekst:</label><textarea id="contactText" type="text" ng-model="contactMail.text" class="form-control"/>
+          <br/>
+          <label for="email">Email:</label><input id="email" type="email" ng-model="contactMail.email" class="form-control"/>
+          <br/>
+          <button type="submit" class="btn btn-default">Pošalji mail</button>
+          <br/>
+          <br/>
+          <br/>
+          <div class="alert alert-danger" role="alert" ng-show="message && error" style="text-transform: uppercase;">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Greška:</span>
+            {{message}}
+          </div>
+          <div class="alert alert-info" role="alert" ng-show="message && !error" style="text-transform: uppercase;">
+          <!--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  TODO: ubaciti neku ikonicu-->
+          {{message}}
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

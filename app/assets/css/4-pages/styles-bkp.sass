@@ -1,0 +1,200 @@
+header
+  height:500px
+  background:url("/img/main-banner-bg.jpg") no-repeat center center
+  margin-bottom:30px
+  background-size:cover
+  padding-top:30px
+  padding-bottom:30px
+
+// Navigation
+
+.navbar-default
+  background-color:transparent
+  border:none
+  .navbar-nav
+    li
+      a
+        color:$white !important
+        opacity:0.7
+        padding:15px
+        background:transparent !important
+        &:hover
+          opacity:1
+          background:transparent !important
+      &.active, &.open, &:focus, &:hover
+        a
+          opacity:1
+          color:$white
+          // border:1px solid $white
+          border-radius:10px
+          background:transparent
+
+      ul.dropdown-menu
+        li
+          a
+            color:$pm-main !important
+            padding:5px 15px
+            &:hover
+              opacity:0.7
+              text-decoration:underline
+
+.navbar-brand
+  padding:0
+  width:120px
+.navbar
+  height:auto
+  margin-bottom:0
+
+//Posts
+/* clear fix */
+.grid:after
+  content: ''
+  display: block
+  clear: both
+
+.grid-sizer, .grid-item
+  width: 29.8%
+  box-sizing: border-box
+
+/* 2 columns wide */
+.grid-item--width2
+  width: 100%
+  padding-right:30px
+
+.posts
+  article
+    background-color:$white
+    border-radius:10px
+    overflow:hidden
+    margin-bottom:30px
+
+    .post-content
+      padding:20px
+      &.boy-post
+        border-top:4px solid $pm-boys
+      &.girl-post
+        border-top:4px solid $pm-girls
+
+    h1, h1 a
+      font-size:12px
+      font-weight:500
+      margin:0
+      margin-bottom:15px
+      font-family: 'Fira Sans', sans-serif
+      span
+        display:inline-flex
+        float:right
+    h2, h2 a
+      font-size:18px
+      line-height:1.4
+      font-weight:500
+      margin:0
+      margin-bottom:15px
+      color:$pm-main
+    .stats
+      float:right
+      font-size:12px
+      display:flex
+      justify-content:center
+      align-items:center
+      font-weight:700
+      font-family: 'Fira Sans', sans-serif
+      .favs, .boys, .girls
+        float:left
+        margin-left:10px
+      .favs
+        span
+          color:$yellow
+      .boys
+        span
+          color:$pm-boys
+      .girls
+        span
+          color:$pm-girls
+      span
+        margin-right:5px
+        top:2px
+        position:relative
+
+//Post detail page
+
+#post-detail
+  .content
+    border-radius:10px
+    overflow:hidden
+  .post-detail-content
+    background-color:$white
+    padding:30px
+  header
+    height:auto
+  .post-img
+    margin-bottom:0px
+    overflow:hidden
+    img
+      width:100%
+      height:200px
+      overflow:hidden
+
+  .post-title
+    width:100%
+    margin-bottom:10px
+    h1
+      font-size:26px
+      font-weight: 800
+      margin: 0
+      float: left
+
+    .stats
+      float:right
+      font-size:12px
+      display:flex
+      justify-content:center
+      align-items:center
+      font-weight:700
+      font-family: 'Fira Sans', sans-serif
+      .favs, .boys, .girls
+        float:left
+        margin-left:10px
+      .favs
+        span
+          color:$yellow
+      .boys
+        span
+          color:$pm-boys
+      .girls
+        span
+          color:$pm-girls
+      span
+        margin-right:5px
+        top:2px
+        position:relative
+  .post-description
+  .comments
+
+.input-group
+  margin-bottom:15px
+
+//Footer
+
+footer
+  background-color:$pm-main
+  color:$white
+  padding: 50px 0
+  h1
+    font-size:18px
+    font-weight: 700
+    color:$white
+    margin:0
+  hr
+    height:3px
+    width: 30px
+    background-color:$white
+    margin: 10px 0
+  ul
+    list-style: none
+    padding: 0
+
+    li
+      a
+        color:$white
+        font-size:14px
