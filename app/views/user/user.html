@@ -66,7 +66,7 @@
                       <h5>
                         <a ui-sref="app.user({id : question.user.id})">{{question.user.username}}</a>
                       </h5>
-                      <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
+                      <span title="{{question.wholeTime}}">{{question.timestamp | timeago}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
@@ -116,7 +116,7 @@
                       <h5>
                         <a ui-sref="app.user({id: answer.user.id})">{{answer.user.username}}</a>
                       </h5>
-                      <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                      <span title="{{answer.wholeTime}}">{{answer.timestamp | timeago}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
@@ -166,7 +166,7 @@
                       <h5>
                         <a ui-sref="app.user({id: comment.user.id})">{{comment.user.username}}</a>
                       </h5>
-                      <span title="{{comment.wholeTime}}">{{comment.timestamp}}</span>
+                      <span title="{{comment.wholeTime}}">{{comment.timestamp | timeago}}</span>
                     </div>
                   </div>
                   <div class="comment-content" style="width: 100%;">
@@ -251,7 +251,7 @@
                         <h5>
                           <a ui-sref="app.user({id: question.user.id})">{{question.user.username}}</a>
                         </h5>
-                        <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
+                        <span title="{{question.wholeTime}}">{{question.timestamp | timeago}}</span>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">
@@ -304,7 +304,7 @@
                         <h5>
                           <a ui-sref="app.user({id: answer.user.id})">{{answer.user.username}}</a>
                         </h5>
-                        <span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                        <span title="{{answer.wholeTime}}">{{answer.timestamp | timeago}}</span>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">
@@ -345,7 +345,7 @@
                         <h5>
                           <a ui-sref="app.user({id: comment.user.id})">{{comment.user.username}}</a>
                         </h5>
-                        <span title="{{comment.wholeTime}}">{{comment.timestamp}}</span>
+                        <span title="{{comment.wholeTime}}">{{comment.timestamp | timeago}}</span>
                       </div>
                     </div>
                     <div class="comment-content" style="width: 100%;">

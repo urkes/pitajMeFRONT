@@ -20,7 +20,7 @@
               <h1>
                 <a ng-if="question.type == 'question'" ui-sref="app.user({id: question.user.id})">{{question.user.username}}</a>
                 <a ng-if="question.type == 'article'" ui-sref=".">članak</a>
-                <span>{{question.timestamp}}</span>
+                <span>{{question.timestamp | timeago}}</span>
               </h1>
               <h2>
                 <a ng-if="question.type == 'question'" ui-sref="app.question({ id : question.id})">{{question.title}}</a>

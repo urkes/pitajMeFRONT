@@ -11,7 +11,7 @@
         <!--USER DETAILS-->
         <div class="row">
           <div class="col-md-12 post-user">
-            <div class="username-wrap">
+            <div class="username-wrap" ng-if="question.type === 'question'">
               <a ui-sref="app.user({id: question.user.id})" class="user-thumb">
                 <img ng-if="!question.user.image || question.isAnonymous" src="assets/images/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
                 <img ng-if="question.user.image && !question.isAnonymous" ng-src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
@@ -19,7 +19,7 @@
               <a ng-if="question.isAnonymous" href="">Anonymous</a>
               <a ng-if="!question.isAnonymous" ui-sref="app.user({id: question.user.id})" >{{question.user.username}}</a>
             </div>
-            <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
+            <span title="{{question.wholeTime}}">{{question.timestamp | timeago}}</span>
           </div>
         </div>
         <!--END USER DETAILS-->
@@ -87,7 +87,7 @@
         </div>
       </div>
       <!--POST ANSWER-->
-      <div class="content" ng-if="isLogged">
+      <div class="content" ng-if="isAuth()">
         <div class="row">
           <div class="col-md-12">
             <form role="form" class="form-signin" ng-submit="sendAnswer(answer)">
@@ -125,7 +125,7 @@
                   <img ng-if="answer.user.image" ng-src="{{answer.user.image}}" alt="Profile image" class="img-responsive"/>
                 </div>
                 <div class="info">
-                  <h5><a ui-sref="app.user({id: answer.user.id})">{{answer.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                  <h5><a ui-sref="app.user({id: answer.user.id})">{{answer.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp | timeago}}</span>
                 </div>
               </div>
               <!--ANSWER USER INFO END-->
@@ -171,7 +171,7 @@
                               <img ng-if="comment.user.image" ng-src="{{comment.user.image}}" alt="Profile image" class="img-responsive"/>
                             </div>
                             <div class="info">
-                              <h5><a ui-sref="app.user({id: comment.userId})" >{{comment.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp}}</span>
+                              <h5><a ui-sref="app.user({id: comment.userId})" >{{comment.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{comment.timestamp | timeago}}</span>
                             </div>
                           </div>
                           <div class="comment-content" style="width: 100%;">
@@ -189,7 +189,7 @@
                           </div>
                         </div>
                         <!--POST COMMENT-->
-                        <form action="" ng-if="isLogged" ng-submit="sendComment(answer, comment)">
+                        <form action="" ng-if="isAuth()" ng-submit="sendComment(answer, comment)">
                           <div class="row">
                             <div class="form-group col-md-12">
                               <label for="answer-content">Komentar</label>

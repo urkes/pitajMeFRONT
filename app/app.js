@@ -218,7 +218,7 @@ angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmotico
         url: '/article/:id',
         views:{
           'container@': {
-            templateUrl:'views/post/article.html',
+            templateUrl:'views/post/question.html',
             controller: 'ArticlePageCtrl',
             controllerAs: 'ctrl'
           },

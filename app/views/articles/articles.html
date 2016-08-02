@@ -17,12 +17,12 @@
             <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles" on-last-repeat>
               <article>
                 <a ui-sref="app.articles.detail({id : article.id})" >
-                  <img ng-if="!article.image || !checkImageUrl(article.image)" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
-                  <img ng-if="article.image && checkImageUrl(article.image)" ng-src="{{article.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                  <img ng-if="!article.image || !checkImageUrl(article.image)" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" />
+                  <img ng-if="article.image && checkImageUrl(article.image)" ng-src="{{article.image}}" alt="Question cover image" class="img-responsive" />
                 </a>
-                <div class="post-content clearfix {{article.user.sex}}-post" style="height: 180px !important;">
+                <div class="post-content clearfix {{article.user.sex}}-post" >
                   <h1>
-                    <span>{{article.timestamp}}</span>
+                    <span>{{article.timestamp | timeago}}</span>
                   </h1>
                   <h2><a ui-sref="app.articles.detail({id : article.id})">{{article.title}}&nbsp; <i class="fa fa-picture-o" ng-show="article.image"></i></a></h2>
                   <h3><a ui-sref="app.category({id : article.category.id})">{{article.category.name}}</a></h3>

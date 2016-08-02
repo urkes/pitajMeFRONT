@@ -61,6 +61,7 @@ angular.module('pitajMeApp')
         )
   };
 
+
   this.getUserQuestions = function (userId) {
     return $http.get(pmURL + '/users/' + userId + '/question')
         .then(

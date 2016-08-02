@@ -19,12 +19,12 @@
             <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles | limitTo:3">
               <article>
                 <a ui-sref="app.article({id : article.id})" >
-                  <img ng-if="!article.image" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
-                  <img ng-if="article.image" ng-src="{{article.image}}" alt="{{article.title}}" class="img-responsive" style="height: 180px;"/>
+                  <img ng-if="!article.image" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" />
+                  <img ng-if="article.image" ng-src="{{article.image}}" alt="{{article.title}}" class="img-responsive" />
                 </a>
-                <div class="post-content clearfix {{article.user.sex}}-post" style="height: 180px !important;">
+                <div class="post-content clearfix {{article.user.sex}}-post">
                   <h1>
-                    <span>{{article.timestamp}}</span>
+                    <span>{{article.timestamp | timeago}}</span>
                   </h1>
                   <h2><a ui-sref="app.article({id : article.id})">{{article.title}}&nbsp; <i class="fa fa-picture-o" ng-show="article.image"></i></a></h2>
                   <h3><a ui-sref="app.category({id : article.category.id})">{{article.category.name}}</a></h3>
@@ -61,14 +61,14 @@
           <div class="grid-item col-md-4 col-sm-6 col-xs-12" ng-repeat="question in questions track by $index" on-last-repeat>
             <article>
               <a ui-sref="app.question({id: question.id})">
-                <img ng-if="!question.image || !checkImageUrl(question.image)" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
-                <img ng-if="question.image && checkImageUrl(question.image)" ng-src="{{question.image}}" alt="Question cover image" class="img-responsive" style="height: 180px;"/>
+                <img ng-if="!question.image || !checkImageUrl(question.image)" src="assets/images/post-test-6.jpg" alt="Question cover image" class="img-responsive" />
+                <img ng-if="question.image && checkImageUrl(question.image)" ng-src="{{question.image}}" alt="Question cover image" class="img-responsive" />
               </a>
               <div class="post-content clearfix {{question.opinionFrom}}-post">
                 <h1>
                   <a ng-show="!question.isAnonymous" ui-sref="app.user({ id: question.user.id })" >{{question.user.username}}</a>
                   <a ng-show="question.isAnonymous" href="">Anonymous</a>
-                  <span>{{question.timestamp}}</span>
+                  <span>{{question.timestamp | timeago}}</span>
                 </h1>
                 <h2><a ui-sref="app.question({ id: question.id})">{{question.title}}&nbsp; <i class="fa fa-picture-o" ng-show="question.image"></i></a></h2>
                 <h3><a ui-sref="app.category({ id: question.category.id})">{{question.category.name}}</a></h3>
