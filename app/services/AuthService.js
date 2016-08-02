@@ -4,7 +4,8 @@ angular.module('pitajMeApp')
       login = function (username, password, rememberMe) {
         if (username && password) {
           if (username === 'urkes' && password === 'sifra') {
-            currentUser.id = 5;
+            // TODO: postaviti AGE, image
+            currentUser.id = 2;
             currentUser.token = 'nekiToken';
             currentUser.username = username;
             currentUser.password = password;

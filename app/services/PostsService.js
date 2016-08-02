@@ -60,4 +60,47 @@ angular.module('pitajMeApp')
             }
         )
   };
+
+  this.getUserQuestions = function (userId) {
+    return $http.get(pmURL + '/users/' + userId + '/question')
+        .then(
+            function (result) {
+              return result.data;
+              // console.log(result);
+            },
+            function (reason) {
+              console.log('Greska: ' + reason);
+              reason.error = "Neuspešna konekcija ka serveru. Molimo Vas pokušajte ponovo!";
+              return reason;
+            }
+        )
+  };
+  this.getUserAnswers = function (userId) {
+    return $http.get(pmURL + '/users/' + userId + '/answer')
+        .then(
+            function (result) {
+              return result.data;
+              // console.log(result);
+            },
+            function (reason) {
+              console.log('Greska: ' + reason);
+              reason.error = "Neuspešna konekcija ka serveru. Molimo Vas pokušajte ponovo!";
+              return reason;
+            }
+        )
+  };
+  this.getUserComments = function (userId) {
+    return $http.get(pmURL + '/users/' + userId + '/comment')
+        .then(
+            function (result) {
+              return result.data;
+              // console.log(result);
+            },
+            function (reason) {
+              console.log('Greska: ' + reason);
+              reason.error = "Neuspešna konekcija ka serveru. Molimo Vas pokušajte ponovo!";
+              return reason;
+            }
+        )
+  };
 }]);

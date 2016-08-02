@@ -12,12 +12,12 @@
         <div class="row">
           <div class="col-md-12 post-user">
             <div class="username-wrap">
-              <a ui-sref="app.user({id: question.userId})" class="user-thumb">
+              <a ui-sref="app.user({id: question.user.id})" class="user-thumb">
                 <img ng-if="!question.user.image || question.isAnonymous" src="assets/images/post-test-1.jpg" alt="Profile image" class="img-responsive"/>
                 <img ng-if="question.user.image && !question.isAnonymous" ng-src="{{question.account.image}}" alt="Profile image" class="img-responsive"/>
               </a>
               <a ng-if="question.isAnonymous" href="">Anonymous</a>
-              <a ng-if="!question.isAnonymous" ui-sref="app.user({id: question.userId})" >{{question.user.username}}</a>
+              <a ng-if="!question.isAnonymous" ui-sref="app.user({id: question.user.id})" >{{question.user.username}}</a>
             </div>
             <span title="{{question.wholeTime}}">{{question.timestamp}}</span>
           </div>
@@ -125,7 +125,7 @@
                   <img ng-if="answer.user.image" ng-src="{{answer.user.image}}" alt="Profile image" class="img-responsive"/>
                 </div>
                 <div class="info">
-                  <h5><a ui-sref="app.user({id: answer.userId})">{{answer.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
+                  <h5><a ui-sref="app.user({id: answer.user.id})">{{answer.user.username}}</a></h5><span title="{{answer.wholeTime}}">{{answer.timestamp}}</span>
                 </div>
               </div>
               <!--ANSWER USER INFO END-->
