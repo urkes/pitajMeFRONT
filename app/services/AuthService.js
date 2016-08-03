@@ -1,21 +1,40 @@
 angular.module('pitajMeApp')
-    .factory('AuthService',['$rootScope', '$state', 'localStorageService', function($rootScope, $state, localStorageService){
+    .factory('AuthService',['$rootScope', '$state', 'localStorageService', '$http', 'pmURL', function($rootScope, $state, localStorageService, $http, pmURL){
       var currentUser = {};
       login = function (username, password, rememberMe) {
+        var loginCredentials = {};
         if (username && password) {
-          if (username === 'urkes' && password === 'sifra') {
-            // TODO: postaviti AGE, image
-            currentUser.id = 2;
-            currentUser.token = 'nekiToken';
-            currentUser.username = username;
-            currentUser.password = password;
-            localStorageService.set('currentUser', currentUser);
-            $rootScope.isLoggedIn = true;
-            $state.go('app.home', {}, {reload: true});
-          } else {
-            $rootScope.loginError = 'Korisničko ime ili šifra nisu ispravni!';
-            $rootScope.isLoggedIn = false;
-          }
+          loginCredentials.username = username;
+          loginCredentials.password = password;
+          return $http.post(pmURL + '/user/login', loginCredentials)
+              .then(
+                  function (result) {
+                    currentUser.username = username;
+                    currentUser.auth_key = result.data.auth_key;
+                    currentUser.id = result.data.id;
+                      localStorageService.set('currentUser', currentUser);
+                      $rootScope.isLoggedIn = true;
+                      $state.go('app.home', {}, {reload: true});
+                  },
+                  function (reason) {
+                    console.log('Greska: ' + reason);
+                    reason.error = "Neuspešna konekcija ka serveru. Molimo Vas pokušajte ponovo!";
+                    return reason;
+                  }
+              )
+          // if (username === 'urkes' && password === 'sifra') {
+          //   // TODO: postaviti AGE, image
+          //   currentUser.id = 2;
+          //   currentUser.token = 'nekiToken';
+          //   currentUser.username = username;
+          //   currentUser.password = password;
+          //   localStorageService.set('currentUser', currentUser);
+          //   $rootScope.isLoggedIn = true;
+          //   $state.go('app.home', {}, {reload: true});
+          // } else {
+          //   $rootScope.loginError = 'Korisničko ime ili šifra nisu ispravni!';
+          //   $rootScope.isLoggedIn = false;
+          // }
         } else {
           $rootScope.loginError = 'Niste uneli potrebne podatke!';
           $rootScope.isLoggedIn = false;

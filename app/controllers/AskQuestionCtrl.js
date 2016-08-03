@@ -1,5 +1,5 @@
 angular.module('pitajMeApp')
-    .controller('AskQuestionCtrl', [ '$rootScope', '$scope', 'PostsService', 'CategoryService', '$state', 'UsersService', function ($rootScope, $scope, PostsService, CategoryService, $state, UsersService) {
+    .controller('AskQuestionCtrl', [ '$rootScope', '$scope', 'PostsService', 'CategoryService', '$state', 'UsersService', '$sanitize', function ($rootScope, $scope, PostsService, CategoryService, $state, UsersService, $sanitize) {
       var getCategories,
           sendQuestion,
           question;
@@ -15,9 +15,10 @@ angular.module('pitajMeApp')
             });
       };
 
-      $scope.sendQuestion = function (question) {
+      $scope.sendQuestion = function (question, content) {
         var user;
         $scope.message = null;
+        question.text = $sanitize(content);
         question.type = 'question';
         //TODO: ovde moram odraditi validaciju forme i onda slanje na Servis da se postavi pitanje.
         // Nakon postavljanja pitanja treba redirektovati na odgovarajuci state

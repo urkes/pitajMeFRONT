@@ -47,7 +47,7 @@ angular.module('pitajMeApp')
                 $scope.fetchError = result.error;
               }
             });
-      };
+      }.operationProgress('loadNextQuestions');
 
       getAllArticles = function () {
         return PostsService.getAllArticles()

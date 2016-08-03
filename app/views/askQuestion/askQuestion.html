@@ -1,6 +1,6 @@
   <section class="container">
     <div class="row">
-      <form role="form" class="form-signin" ng-submit="sendQuestion(question)">
+      <form role="form" class="form-signin" ng-submit="sendQuestion(question, content)">
         <div class="col-md-9">
           <div class="content">
             <div class="row">
@@ -12,7 +12,8 @@
                 </div>
                 <div class="form-group">
                   <label for="text">Tekst pitanja</label>
-                  <textarea id="text" placeholder="Napišite pitanje" rows="3" required="required" class="form-control" ng-model="question.text"></textarea>
+                  <textarea id="text" placeholder="Napišite pitanje" rows="3" required="required" class="form-control" ng-model="content"
+                           redactor ></textarea>
                 </div>
               </div>
               <div class="col-md-12 container">

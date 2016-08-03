@@ -1,8 +1,8 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmoticons', 'djds4rce.angular-socialshare', 'LocalStorageModule'])
-    .constant('pmURL', 'http://front.pitajme.local')
+angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmoticons', 'djds4rce.angular-socialshare', 'LocalStorageModule', 'angular-redactor'])
+    .constant('pmURL', 'http://api.pitajme.local')
     .run(['$rootScope', 'localStorageService', '$stateParams', function ($rootScope, localStorageService, $stateParams) {
       var invocationCounter = 1;
       $rootScope.operationProgress = {};
@@ -53,6 +53,12 @@ angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmotico
       localStorageServiceProvider
           .setPrefix('pitajMeApp')
     }])
+    .config(function (redactorOptions) {
+      redactorOptions.buttons = ['formatting', '|', 'bold', 'italic' , 'link' , 'image', 'file', 'lists'];
+      redactorOptions.lang = 'sr-lat';
+      redactorOptions.plugins = ['imagemanager'];
+      redactorOptions.imageUpload = 'http://api.pitajme.local/redactor/upload/image';
+    })
     .config(['$locationProvider', '$urlRouterProvider', '$stateProvider', function($locationProvider, $urlRouterProvider, $stateProvider) {
   // $locationProvider.hashPrefix('#');
 
