@@ -58,6 +58,7 @@ angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmotico
       redactorOptions.lang = 'sr-lat';
       redactorOptions.plugins = ['imagemanager'];
       redactorOptions.imageUpload = 'http://api.pitajme.local/redactor/upload/image';
+      redactorOptions.uploadUrl = 'http://api.pitajme.local/uploads'
     })
     .config(['$locationProvider', '$urlRouterProvider', '$stateProvider', function($locationProvider, $urlRouterProvider, $stateProvider) {
   // $locationProvider.hashPrefix('#');
