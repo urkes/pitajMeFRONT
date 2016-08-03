@@ -17,6 +17,27 @@ angular.module('pitajMeApp')
         )
   };
 
+  this.getPosts = function (pageLength, page) {
+    return $http.get(pmURL + '/posts?per-page=' + pageLength + '&page=' + page)
+        .then(
+            function (result) {
+              var currentPage = result.headers()['x-pagination-current-page'];
+              var maxPages = result.headers()['x-pagination-page-count'];
+              if (currentPage != parseInt(maxPages)) {
+                result.nextPage = 1 + parseInt(currentPage);
+              }
+
+              return result;
+              // console.log(result);
+            },
+            function (reason) {
+              console.log('Greska: ' + reason);
+              reason.error = "Neuspešna konekcija ka serveru. Molimo Vas pokušajte ponovo!";
+              return reason;
+            }
+        )
+  };
+
   this.getMostLiked = function () {
     return $http.get(pmURL + '/posts/liked')
         .then(
@@ -93,6 +114,26 @@ angular.module('pitajMeApp')
   this.getUserComments = function (userId) {
     return $http.get(pmURL + '/users/' + userId + '/comment')
         .then(
+            function (result) {
+              return result.data;
+              // console.log(result);
+            },
+            function (reason) {
+              console.log('Greska: ' + reason);
+              reason.error = "Neuspešna konekcija ka serveru. Molimo Vas pokušajte ponovo!";
+              return reason;
+            }
+        )
+  };
+
+
+  this.sendQuestion = function (question) {
+    return $http.post(pmURL + '/posts', question, {
+      headers: {
+        'Content-Type' : 'application/json',
+        'Accept' : 'application/json'
+      }
+    }).then(
             function (result) {
               return result.data;
               // console.log(result);

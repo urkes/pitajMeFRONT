@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
+      <div class="alert alert-info" role="alert" ng-show="message" style="text-transform: uppercase;">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        {{message}}
+      </div>
       <!--QUESTION IMAGE-->
       <div class="row">
         <div ng-if="!question.image" class="col-md-12 post-img"><a href=""><img src="assets/images/big-post-img.jpg" alt="Category image" class="img-responsive"/></a></div>

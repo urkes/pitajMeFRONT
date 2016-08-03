@@ -1,5 +1,5 @@
 angular.module('pitajMeApp')
-    .controller('AskQuestionCtrl', [ '$rootScope', '$scope', 'PostsService', 'CategoryService', function ($rootScope, $scope, PostsService, CategoryService) {
+    .controller('AskQuestionCtrl', [ '$rootScope', '$scope', 'PostsService', 'CategoryService', '$state', 'UsersService', function ($rootScope, $scope, PostsService, CategoryService, $state, UsersService) {
       var getCategories,
           sendQuestion,
           question;
@@ -16,15 +16,35 @@ angular.module('pitajMeApp')
       };
 
       $scope.sendQuestion = function (question) {
+        var user;
         $scope.message = null;
+        question.type = 'question';
         //TODO: ovde moram odraditi validaciju forme i onda slanje na Servis da se postavi pitanje.
         // Nakon postavljanja pitanja treba redirektovati na odgovarajuci state
-
-        // this.question = question;
-        // console.log(this.question);
+        if (!$rootScope.isAuth()) {
+          $rootScope.message = "Morate biti ulogovani da biste postavili pitanje!";
+          $state.go('app.login', {}, {reload: true});
+        }
         if (!question.category) {
           $scope.message = "Morate odabrati kategoriju";
+          return;
         }
+        return UsersService.getUserInfo($rootScope.getCurrentUser().id).then(
+            function (result) {
+              user = result;
+              question.user = user;
+              return PostsService.sendQuestion(question)
+                  .then(function (result) {
+                    if (result.id) {
+                      // $rootScope.message = 'Čestitamo! Uspešno ste postavili pitanje.';
+                      $state.go('app.question', {id: result.id}, {reload: true});
+                    } else {
+                      $rootScope.message = 'Neuspešno! Molimo Vas pokušajte ponovo.';
+                    }
+                    //$scope.question = null;
+                  })
+            }
+        );
       };
       getCategories();
     }]);
