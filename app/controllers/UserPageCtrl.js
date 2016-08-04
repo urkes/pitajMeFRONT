@@ -4,6 +4,7 @@ angular.module('pitajMeApp')
         getUserAnswers,
         getUserComments,
         getUserInfo,
+        registerUser,
         userId = null;
 
 

@@ -18,12 +18,12 @@ angular.module('pitajMeApp')
   };
 
   this.getPosts = function (pageLength, page) {
-    return $http.get(pmURL + '/posts?per-page=' + pageLength + '&page=' + page)
+    return $http.get(pmURL + '/posts/summary?per-page=' + pageLength + '&page=' + page)
         .then(
             function (result) {
               var currentPage = result.headers()['x-pagination-current-page'];
               var maxPages = result.headers()['x-pagination-page-count'];
-              if (currentPage != parseInt(maxPages)) {
+              if ((parseInt(currentPage) + 1) != parseInt(maxPages)) {
                 result.nextPage = 1 + parseInt(currentPage);
               }
 

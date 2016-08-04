@@ -3,7 +3,7 @@ angular.module('pitajMeApp')
       var getAllQuestions,
           getAllArticles,
           pageLength = 3,
-          pageNumber = 1,
+          pageNumber = 0,
           nextPage = null,
           offset = 0;
 
@@ -20,12 +20,18 @@ angular.module('pitajMeApp')
                 } else {
                   nextPage = result.nextPage;
                 }
-                $scope.questions = result.data;
+                newQuestions = $.map(result.data, function (value, index) {
+                  return [value];
+                });
+                // result.data.forEach(function (question) {
+                //   $scope.questions.push(question);
+                // });
                 // if (result.length < pageLength+1){
                 //   pageNumber =
                 // } else {
                 //   $scope.questions = result.slice(0,pageLength);
                 // }
+                $scope.questions = newQuestions;
               }else{
                 $scope.fetchError = result.error;
               }
@@ -35,13 +41,21 @@ angular.module('pitajMeApp')
       $scope.loadNextQuestions = function () {
         return PostsService.getPosts(pageLength, nextPage)
             .then(function (result) {
+              var newPosts = {};
               if (!result.error){
                 if (!result.nextPage) {
                   $scope.hasMoreQuestions = false;
                 } else {
                   nextPage = result.nextPage;
                 }
-                $scope.questions = $scope.questions.concat(result.data);
+                newQuestions = $.map(result.data, function (value, index) {
+                  return [value];
+                });
+                // newPosts.forEach(function (question) {
+                //   $scope.questions.push(question);
+                // });
+                $scope.questions = $scope.questions.concat(newQuestions);
+                console.log($scope.questions);
                   // $scope.questions.concat(result.data);
               }else{
                 $scope.fetchError = result.error;

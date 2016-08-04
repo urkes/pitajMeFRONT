@@ -173,6 +173,14 @@ angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmotico
           }
         }
       })
+      .state('app.register.success',{
+        url: '/success',
+        views:{
+          'container@': {
+            templateUrl:'views/register/registerSuccess.html'
+          }
+        }
+      })
       .state('app.user',{
         url: '/user/:id',
         views:{
@@ -189,6 +197,16 @@ angular.module('pitajMeApp', ['ngResource', 'ui.router', 'ngAnimate', 'ngEmotico
           'container@': {
             templateUrl:'views/user/profile.html',
             controller: 'UserPageCtrl',
+            controllerAs: 'ctrl'
+          }
+        }
+      })
+      .state('app.user.validateEmail',{
+        url: '/validateEmail/:email/:validationToken',
+        views:{
+          'container@': {
+            templateUrl:'views/register/validateUser.html',
+            controller: 'RegisterCtrl',
             controllerAs: 'ctrl'
           }
         }

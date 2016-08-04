@@ -1,6 +1,6 @@
 <section class="container">
   <div class="row">
-    <form role="form" class="form-signin" ng-submit="createAccount(acc)">
+    <form role="form" class="form-signin" ng-submit="registerUser(acc)">
       <div class="col-md-9">
         <div class="content">
           <div class="row">
@@ -9,7 +9,7 @@
               <h1>Registracija</h1>
               <div class="form-group">
                 <label for="email">Email adresa</label>
-                <input id="email" type="email" placeholder="Email adresa" required="" class="form-control" ng-model="acc.email"/>
+                <input id="email" type="email" placeholder="Email adresa" required="required" class="form-control" ng-model="acc.email"/>
               </div>
               <div class="form-group">
                 <label for="password">Šifra</label>
@@ -26,8 +26,8 @@
               <div class="form-group row">
                 <label for="country_box" class="col-md-12">Zemlja</label>
                 <div id="country_box" class="col-md-4">
-                  <select class="form-control" name="country" id="country" ng-model="acc.country" ng-options="country.name for country in countries">
-                    <option value="">Odaberite zemlju</option>
+                  <select class="form-control" name="country" id="country" ng-model="acc.country" >
+                    <option value="{{country.code}}" ng-repeat="country in countries">{{country.name}}</option>
                   </select>
                 </div>
               </div>
@@ -38,18 +38,18 @@
                 <div class="row">
                   <label for="day" class="col-md-12">Datum rođenja:</label>
                   <div class="col-md-4">
-                    <select id="day" class="form-control" ng-model="acc.day" ng-options="day.name for day in days">
-                      <option value="">Dan</option>
+                    <select id="day" class="form-control" ng-model="acc.day" ng-options="select as day.name for day in days track by day.name">
+                      <option value="{{day.name}}" ng-repeat="day in days">{{day.name}}</option>
                     </select>
                   </div>
                   <div class="col-md-4">
-                    <select id="month" class="form-control" ng-model="acc.month" ng-options="month.name for month in months">
-                      <option value="">Mesec</option>
+                    <select id="month" class="form-control" ng-model="acc.month" ng-options="select as month.name for month in months track by month.name">
+                      <option value="{{month.name}}" ng-repeat="month in months">{{month.name}}</option>
                     </select>
                   </div>
                   <div class="col-md-4">
-                    <select id="year" class="form-control" ng-model="acc.year" ng-options="year.name for year in years">
-                      <option value="">Godina</option>
+                    <select id="year" class="form-control" ng-model="acc.year" ng-options="select as year.name for year in years track by year.name">
+                      <option value="{{year.name}}" ng-repeat="year in years">{{year.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -58,7 +58,7 @@
                 <label for="gender">Pol</label>
                 <div id="gender" class="radio" ng-model="acc.sex">
                   <label class="radio-inline" ng-repeat="s in sex">
-                    <input type="radio" name="gender" value="{{s.name}}" ng-model="acc.sex"/>{{s.name}}
+                    <input type="radio" name="gender" value="{{s.value}}" ng-model="acc.sex" required="required" />{{s.name}}
                   </label>
                 </div>
                 <hr class="form-devider"/>
@@ -66,15 +66,15 @@
                   <label class="checkbox">
                     <!--<input type="checkbox" value="remember-me"/> I agree to<a href="#">Terms &amp; Conditions</a>-->
                   </label>
-                  <a type="submit"  class="btn-red">
+                  <button type="submit"  class="btn-green">
                     <div ng-show="loading" class="sp sp-circle" ></div>
                     <span ng-show="!loading">Registruj se</span>
-                  </a>
+                  </button>
                 </div>
                 <div id="errorMessage" class="alert alert-danger" role="alert" ng-show="error">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                  <span class="sr-only">Greška:</span>
-                  {{errorMessage}}
+                  <!--<span class="sr-only">Greška:</span>-->
+                  {{message}}
                 </div>
               </div>
             </div>
